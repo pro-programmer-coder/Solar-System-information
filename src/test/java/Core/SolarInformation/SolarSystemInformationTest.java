@@ -146,9 +146,20 @@ class SolarSystemInformationTest {
     }
 
     @Test
-    public void testValidPasswordIncludesOneOrMoreLowerCaseCharacter(){
+    public void testInValidPasswordIncludesOneOrMoreLowerCaseCharacter(){
         String actualUserID = "AB1234";
         String actualUserPassword = "AABBCC123456?";
+        String expectedObjectNaming = "Not allowed";
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+
+        assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
+        assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
+    }
+
+    @Test
+    public void testInValidPasswordIncludesOneOrMoreUpperCase(){
+        String actualUserID = "AB1234";
+        String actualUserPassword = "aabbcc123456?";
         String expectedObjectNaming = "Not allowed";
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
 
