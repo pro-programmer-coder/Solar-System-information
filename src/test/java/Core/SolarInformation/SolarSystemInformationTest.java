@@ -35,8 +35,8 @@ class SolarSystemInformationTest {
     }
 
     @Test
-    public void invalidUserIDTooShortLetters(){
-        String actualUserID = "A1234";
+    public void invalidUserIDTooShortNumbers(){
+        String actualUserID = "AB123";
         String expectedUserID = "Not allowed";
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID);
 
@@ -44,8 +44,8 @@ class SolarSystemInformationTest {
     }
 
     @Test
-    public void invalidUserIDTooShortNumbers(){
-        String actualUserID = "AB123";
+    public void invalidUserIDTooLongNumbers(){
+        String actualUserID = "AB12345";
         String expectedUserID = "Not allowed";
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID);
 
