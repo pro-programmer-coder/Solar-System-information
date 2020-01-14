@@ -188,6 +188,16 @@ class SolarSystemInformationTest {
         assertTrue(solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
     }
 
+    @Test
+    public void initialiseAOCDetailsValidateNotObjectType(){
+        String actualUserID = "AB1234";
+        String actualUserPassword = "AaBbCc1!2?";
+        String actualAstronomicalObjectClassificationCode = "ZSun27TL";
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+
+        assertFalse(solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
+    }
+
 
 
 }
