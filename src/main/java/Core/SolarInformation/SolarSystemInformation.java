@@ -56,4 +56,28 @@ public class SolarSystemInformation {
             return false;
         }
     }
+
+    public String getAstronomicalObjectClassificationCode() {
+        return astronomicalObjectClassificationCode;
+    }
+
+    public boolean isExists() {
+        return exists;
+    }
+
+    public int getOrbitalPeriod() {
+        return orbitalPeriod;
+    }
+
+    public BigDecimal getRadius() {
+        return radius;
+    }
+
+    public BigDecimal getSemiMajorAxis() {
+        return semiMajorAxis;
+    }
+
+    public BigDecimal getMass() {
+        return mass;
+    }
 }
