@@ -7,13 +7,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SolarSystemInformationTest {
 
+
     @Test
     public void validUserID(){
         String actualUserID = "AB1234";
-        String expectedUserID = "AB1234";
+        String expectedUserID = null;
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID);
 
-        assertEquals(expectedUserID, solarSystemInformation.getUserID());
+        assertEquals(expectedUserID, solarSystemInformation.getObjectName());
     }
 
     @Test
@@ -22,7 +23,7 @@ class SolarSystemInformationTest {
         String expectedUserID = "Not allowed";
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID);
 
-        assertEquals(expectedUserID, solarSystemInformation.getUserID());
+        assertEquals(expectedUserID, solarSystemInformation.getObjectName());
     }
 
     @Test
@@ -31,7 +32,7 @@ class SolarSystemInformationTest {
         String expectedUserID = "Not allowed";
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID);
 
-        assertEquals(expectedUserID, solarSystemInformation.getUserID());
+        assertEquals(expectedUserID, solarSystemInformation.getObjectName());
     }
 
     @Test
@@ -40,7 +41,7 @@ class SolarSystemInformationTest {
         String expectedUserID = "Not allowed";
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID);
 
-        assertEquals(expectedUserID, solarSystemInformation.getUserID());
+        assertEquals(expectedUserID, solarSystemInformation.getObjectName());
     }
 
     @Test
@@ -49,7 +50,7 @@ class SolarSystemInformationTest {
         String expectedUserID = "Not allowed";
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID);
 
-        assertEquals(expectedUserID, solarSystemInformation.getUserID());
+        assertEquals(expectedUserID, solarSystemInformation.getObjectName());
     }
 
     @Test
@@ -62,7 +63,7 @@ class SolarSystemInformationTest {
         String expectedUserID1 = "Not allowed";
         SolarSystemInformation solarSystemInformation1 = new SolarSystemInformation(actualUserID1);
 
-        assertEquals(expectedUserID1, solarSystemInformation1.getUserID());
+        assertEquals(expectedUserID, solarSystemInformation.getObjectName());
     }
 
     @Test
@@ -71,6 +72,6 @@ class SolarSystemInformationTest {
         String expectedUserID = "Not allowed";
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID);
 
-        assertEquals(expectedUserID, solarSystemInformation.getUserID());
+        assertEquals(expectedUserID, solarSystemInformation.getObjectName());
     }
 }

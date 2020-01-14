@@ -1,18 +1,23 @@
 package Core.SolarInformation;
 
 public class SolarSystemInformation {
-    private String userID;
+    private String objectType;
+    private String objectName;
 
     public SolarSystemInformation(String userID) {
         if(userID.matches("[A-Z][A-Z]\\d\\d\\d\\d") && !userID.substring(2).equals("0000")) {
-            this.userID = userID;
         }
         else{
-            this.userID = "Not allowed";
+            objectName = "Not allowed";
+            objectType = "Not allowed";
         }
     }
 
-    public String getUserID() {
-        return userID;
+    public String getObjectType() {
+        return objectType;
+    }
+
+    public String getObjectName() {
+        return objectName;
     }
 }
