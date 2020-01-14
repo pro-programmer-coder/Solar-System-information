@@ -111,4 +111,15 @@ class SolarSystemInformationTest {
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
     }
+
+    @Test
+    public void testValidPassword10Characters(){
+        String actualUserID = "AB1234";
+        String actualUserPassword = "AaBbCc1!2?";
+        String expectedObjectNaming = null;
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+
+        assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
+        assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
+    }
 }
