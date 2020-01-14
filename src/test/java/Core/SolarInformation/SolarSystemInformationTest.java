@@ -51,4 +51,13 @@ class SolarSystemInformationTest {
 
         assertEquals(expectedUserID, solarSystemInformation.getUserID());
     }
+
+    @Test
+    public void invalidUserIDIncorrectCase(){
+        String actualUserID = "Ab1234";
+        String expectedUserID = "Not allowed";
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID);
+
+        assertEquals(expectedUserID, solarSystemInformation.getUserID());
+    }
 }
