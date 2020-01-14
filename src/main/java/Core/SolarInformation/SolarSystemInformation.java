@@ -20,6 +20,12 @@ public class SolarSystemInformation {
         else{
             objectName = "Not allowed";
             objectType = "Not allowed";
+            astronomicalObjectClassificationCode = "N\\A";
+            exists = false;
+            orbitalPeriod = 0;
+            radius = new BigDecimal("0");
+            semiMajorAxis = new BigDecimal("0");
+            mass = new BigDecimal("0");
         }
     }
 

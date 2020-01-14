@@ -177,4 +177,6 @@ class SolarSystemInformationTest {
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
     }
+
+
 }
