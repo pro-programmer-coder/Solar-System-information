@@ -18,8 +18,8 @@ public class SolarSystemInformation {
         if(userID.matches("[A-Z][A-Z]\\d\\d\\d\\d") && !userID.substring(2).equals("0000") && password.length() >= 10 && validatePassword(password)) {
         }
         else{
-            objectName = "Not allowed";
-            objectType = "Not allowed";
+            objectName = "Not Allowed";
+            objectType = "Not Allowed";
             astronomicalObjectClassificationCode = "N\\A";
             exists = false;
             orbitalPeriod = 0;
@@ -33,8 +33,16 @@ public class SolarSystemInformation {
         return objectType;
     }
 
+    private void setObjectType(String objectType) {
+        this.objectType = objectType;
+    }
+
     public String getObjectName() {
         return objectName;
+    }
+
+    private void setObjectName(String objectName) {
+        this.objectName = objectName;
     }
 
     private boolean validatePassword(String password){
@@ -67,23 +75,47 @@ public class SolarSystemInformation {
         return astronomicalObjectClassificationCode;
     }
 
+    private void setAstronomicalObjectClassificationCode(String astronomicalObjectClassificationCode) {
+        this.astronomicalObjectClassificationCode = astronomicalObjectClassificationCode;
+    }
+
     public boolean isExists() {
         return exists;
+    }
+
+    private void setExists(boolean exists) {
+        this.exists = exists;
     }
 
     public int getOrbitalPeriod() {
         return orbitalPeriod;
     }
 
+    private void setOrbitalPeriod(int orbitalPeriod) {
+        this.orbitalPeriod = orbitalPeriod;
+    }
+
     public BigDecimal getRadius() {
         return radius;
+    }
+
+    private void setRadius(BigDecimal radius) {
+        this.radius = radius;
     }
 
     public BigDecimal getSemiMajorAxis() {
         return semiMajorAxis;
     }
 
+    private void setSemiMajorAxis(BigDecimal semiMajorAxis) {
+        this.semiMajorAxis = semiMajorAxis;
+    }
+
     public BigDecimal getMass() {
         return mass;
+    }
+
+    private void setMass(BigDecimal mass) {
+        this.mass = mass;
     }
 }

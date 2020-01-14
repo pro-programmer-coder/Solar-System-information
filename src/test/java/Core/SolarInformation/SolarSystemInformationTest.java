@@ -22,7 +22,7 @@ class SolarSystemInformationTest {
     public void invalidUserIDTooLongLetters(){
         String actualUserID = "ABC1234";
         String actualUserPassword = "AaBbCc1!2?";
-        String expectedObjectNaming = "Not allowed";
+        String expectedObjectNaming = "Not Allowed";
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
@@ -33,7 +33,7 @@ class SolarSystemInformationTest {
     public void invalidUserIDTooShortLetters(){
         String actualUserID = "A1234";
         String actualUserPassword = "AaBbCc1!2?";
-        String expectedObjectNaming = "Not allowed";
+        String expectedObjectNaming = "Not Allowed";
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
@@ -44,7 +44,7 @@ class SolarSystemInformationTest {
     public void invalidUserIDTooShortNumbers(){
         String actualUserID = "AB123";
         String actualUserPassword = "AaBbCc1!2?";
-        String expectedObjectNaming = "Not allowed";
+        String expectedObjectNaming = "Not Allowed";
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
@@ -55,7 +55,7 @@ class SolarSystemInformationTest {
     public void invalidUserIDTooLongNumbers(){
         String actualUserID = "AB12345";
         String actualUserPassword = "AaBbCc1!2?";
-        String expectedObjectNaming = "Not allowed";
+        String expectedObjectNaming = "Not Allowed";
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
@@ -66,7 +66,7 @@ class SolarSystemInformationTest {
     public void invalidUserIDIncorrectCase(){
         String actualUserID = "Ab1234";
         String actualUserPassword = "AaBbCc1!2?";
-        String expectedObjectNaming = "Not allowed";
+        String expectedObjectNaming = "Not Allowed";
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
 
         String actualUserID1 = "bA1234";
@@ -83,7 +83,7 @@ class SolarSystemInformationTest {
     public void invalidUserID4ConsecutiveZeros(){
         String actualUserID = "AB0000";
         String actualUserPassword = "AaBbCc1!2?";
-        String expectedObjectNaming = "Not allowed";
+        String expectedObjectNaming = "Not Allowed";
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
@@ -105,7 +105,7 @@ class SolarSystemInformationTest {
     public void testInvalidPasswordTooShort(){
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1";
-        String expectedObjectNaming = "Not allowed";
+        String expectedObjectNaming = "Not Allowed";
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
@@ -138,7 +138,7 @@ class SolarSystemInformationTest {
     public void testInvalidPasswordIncludeANonSymbol_(){
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBb_Cc1";
-        String expectedObjectNaming = "Not allowed";
+        String expectedObjectNaming = "Not Allowed";
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
@@ -149,7 +149,7 @@ class SolarSystemInformationTest {
     public void testInValidPasswordIncludesOneOrMoreLowerCaseCharacter(){
         String actualUserID = "AB1234";
         String actualUserPassword = "AABBCC123456?";
-        String expectedObjectNaming = "Not allowed";
+        String expectedObjectNaming = "Not Allowed";
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
@@ -160,7 +160,7 @@ class SolarSystemInformationTest {
     public void testInValidPasswordIncludesOneOrMoreUpperCase(){
         String actualUserID = "AB1234";
         String actualUserPassword = "aabbcc123456?";
-        String expectedObjectNaming = "Not allowed";
+        String expectedObjectNaming = "Not Allowed";
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
@@ -171,12 +171,21 @@ class SolarSystemInformationTest {
     public void testInValidPasswordIncludesOneOrMoreSymbol(){
         String actualUserID = "AB1234";
         String actualUserPassword = "aabbcC123456";
-        String expectedObjectNaming = "Not allowed";
+        String expectedObjectNaming = "Not Allowed";
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
     }
 
+    @Test
+    public void initialiseAOCDetailsValidateObjectType(){
+        String actualUserID = "AB1234";
+        String actualUserPassword = "AaBbCc1!2?";
+        String actualAstronomicalObjectClassificationCode = "SSun27TL";
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+
+        assertTrue(solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
+    }
 
 }
