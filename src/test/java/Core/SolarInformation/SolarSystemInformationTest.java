@@ -182,7 +182,7 @@ class SolarSystemInformationTest {
     public void initialiseAOCDetailsValidateObjectType(){
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
-        String actualAstronomicalObjectClassificationCode = "SSun27TL";
+        String actualAstronomicalObjectClassificationCode = "A99942Apo138M";
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
 
         assertTrue(solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
@@ -192,12 +192,74 @@ class SolarSystemInformationTest {
     public void initialiseAOCDetailsValidateNotObjectType(){
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
-        String actualAstronomicalObjectClassificationCode = "ZSun27TL";
+        String actualAstronomicalObjectClassificationCode = "Z";
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
 
         assertFalse(solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
     }
 
+    @Test
+    public void initialiseAOCDetailsValidateObjectName(){
+        String actualUserID = "AB1234";
+        String actualUserPassword = "AaBbCc1!2?";
+        String actualAstronomicalObjectClassificationCode = "A99942Apo138M";
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+
+        assertTrue(solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
+    }
+
+    @Test
+    public void initialiseAOCDetailsValidateObjectNameNumbers(){
+        String actualUserID = "AB1234";
+        String actualUserPassword = "AaBbCc1!2?";
+        String actualAstronomicalObjectClassificationCode = "A99942Apo138M";
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+
+        assertTrue(solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
+    }
+
+    @Test
+    public void initialiseAOCDetailsValidateSmaNumbers(){
+        String actualUserID = "AB1234";
+        String actualUserPassword = "AaBbCc1!2?";
+        String actualAstronomicalObjectClassificationCode = "A99942Apo1M";
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+
+        String actualAstronomicalObjectClassificationCode1 = "A99942Apo138M";
+        SolarSystemInformation solarSystemInformation1 = new SolarSystemInformation(actualUserID, actualUserPassword);
+
+        assertTrue(solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
+        assertTrue(solarSystemInformation1.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode1));
+    }
+
+    @Test
+    public void initialiseAOCDetailsValidateSmaLetters(){
+        String actualUserID = "AB1234";
+        String actualUserPassword = "AaBbCc1!2?";
+        String actualAstronomicalObjectClassificationCode = "S99942Apo138M";
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+
+        assertTrue(solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
+    }
+
+    @Test
+    public void initialiseAOCDetailsTestAllExamples(){
+        String actualUserID = "AB1234";
+        String actualUserPassword = "AaBbCc1!2?";
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+
+        assertTrue(solarSystemInformation.initialiseAOCDetailsValidate("SSun27TL"));
+        assertTrue(solarSystemInformation.initialiseAOCDetailsValidate("PMer58M"));
+        assertTrue(solarSystemInformation.initialiseAOCDetailsValidate("PEar150M"));
+        assertTrue(solarSystemInformation.initialiseAOCDetailsValidate("MMoo384T"));
+        assertTrue(solarSystemInformation.initialiseAOCDetailsValidate("MPho9T"));
+        assertTrue(solarSystemInformation.initialiseAOCDetailsValidate("DCer416M"));
+        assertTrue(solarSystemInformation.initialiseAOCDetailsValidate("DPlu6B"));
+        assertTrue(solarSystemInformation.initialiseAOCDetailsValidate("APal416M"));
+        assertTrue(solarSystemInformation.initialiseAOCDetailsValidate("A3Jun401M"));
+        assertTrue(solarSystemInformation.initialiseAOCDetailsValidate("A99942Apo138M"));
+        assertTrue(solarSystemInformation.initialiseAOCDetailsValidate("CHal3B"));
+    }
 
 
 }
