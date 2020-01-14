@@ -118,4 +118,16 @@ public class SolarSystemInformation {
     private void setMass(BigDecimal mass) {
         this.mass = mass;
     }
+
+    public boolean initialiseAOCDetailsValidate(String AstronomicalObjectClassificationCode) {
+        if(AstronomicalObjectClassificationCode.toCharArray()[0] == 'S' ||
+                AstronomicalObjectClassificationCode.toCharArray()[0] == 'P' ||
+                AstronomicalObjectClassificationCode.toCharArray()[0] == 'M' ||
+                AstronomicalObjectClassificationCode.toCharArray()[0] == 'D' ||
+                AstronomicalObjectClassificationCode.toCharArray()[0] == 'A' ||
+                AstronomicalObjectClassificationCode.toCharArray()[0] == 'C'){
+            return true;
+        }
+        return false;
+    }
 }
