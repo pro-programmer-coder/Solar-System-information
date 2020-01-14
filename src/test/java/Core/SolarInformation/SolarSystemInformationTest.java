@@ -64,4 +64,13 @@ class SolarSystemInformationTest {
 
         assertEquals(expectedUserID1, solarSystemInformation1.getUserID());
     }
+
+    @Test
+    public void invalidUserID4ConsecutiveZeros(){
+        String actualUserID = "AB0000";
+        String expectedUserID = "Not allowed";
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID);
+
+        assertEquals(expectedUserID, solarSystemInformation.getUserID());
+    }
 }
