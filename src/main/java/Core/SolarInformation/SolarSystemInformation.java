@@ -4,7 +4,12 @@ public class SolarSystemInformation {
     private String userID;
 
     public SolarSystemInformation(String userID) {
-        this.userID = userID;
+        if(userID.matches("\\w\\w\\d\\d\\d\\d")) {
+            this.userID = userID;
+        }
+        else{
+            this.userID = "Not allowed";
+        }
     }
 
     public String getUserID() {
