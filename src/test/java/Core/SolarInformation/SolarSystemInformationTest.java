@@ -2,6 +2,8 @@ package Core.SolarInformation;
 
 import Core.WebService.IWebService;
 import org.easymock.EasyMock;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.easymock.EasyMock.createMock;
 import static org.easymock.EasyMock.expect;
@@ -14,12 +16,19 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SolarSystemInformationTest {
 
+    IWebService mockWebService;
+
+    @BeforeAll
+    public void setup(){
+        mockWebService = EasyMock.createMock(IWebService.class);
+    }
+
     @Test
     public void validUserID(){
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
         String expectedObjectNaming = null;
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
@@ -30,7 +39,7 @@ class SolarSystemInformationTest {
         String actualUserID = "ABC1234";
         String actualUserPassword = "AaBbCc1!2?";
         String expectedObjectNaming = "Not Allowed";
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
@@ -41,7 +50,7 @@ class SolarSystemInformationTest {
         String actualUserID = "A1234";
         String actualUserPassword = "AaBbCc1!2?";
         String expectedObjectNaming = "Not Allowed";
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
@@ -52,7 +61,7 @@ class SolarSystemInformationTest {
         String actualUserID = "AB123";
         String actualUserPassword = "AaBbCc1!2?";
         String expectedObjectNaming = "Not Allowed";
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
@@ -63,7 +72,7 @@ class SolarSystemInformationTest {
         String actualUserID = "AB12345";
         String actualUserPassword = "AaBbCc1!2?";
         String expectedObjectNaming = "Not Allowed";
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
@@ -74,10 +83,10 @@ class SolarSystemInformationTest {
         String actualUserID = "Ab1234";
         String actualUserPassword = "AaBbCc1!2?";
         String expectedObjectNaming = "Not Allowed";
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         String actualUserID1 = "bA1234";
-        SolarSystemInformation solarSystemInformation1 = new SolarSystemInformation(actualUserID1, actualUserPassword);
+        SolarSystemInformation solarSystemInformation1 = new SolarSystemInformation(actualUserID1, actualUserPassword, mockWebService);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
@@ -91,7 +100,7 @@ class SolarSystemInformationTest {
         String actualUserID = "AB0000";
         String actualUserPassword = "AaBbCc1!2?";
         String expectedObjectNaming = "Not Allowed";
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
@@ -102,7 +111,7 @@ class SolarSystemInformationTest {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
         String expectedObjectNaming = null;
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
@@ -113,7 +122,7 @@ class SolarSystemInformationTest {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1";
         String expectedObjectNaming = "Not Allowed";
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
@@ -124,7 +133,7 @@ class SolarSystemInformationTest {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
         String expectedObjectNaming = null;
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
@@ -135,7 +144,7 @@ class SolarSystemInformationTest {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?AaBbCc1!2?AaBbCc1!2?";
         String expectedObjectNaming = null;
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
@@ -146,7 +155,7 @@ class SolarSystemInformationTest {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBb_Cc1";
         String expectedObjectNaming = "Not Allowed";
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
@@ -157,7 +166,7 @@ class SolarSystemInformationTest {
         String actualUserID = "AB1234";
         String actualUserPassword = "AABBCC123456?";
         String expectedObjectNaming = "Not Allowed";
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
@@ -168,7 +177,7 @@ class SolarSystemInformationTest {
         String actualUserID = "AB1234";
         String actualUserPassword = "aabbcc123456?";
         String expectedObjectNaming = "Not Allowed";
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
@@ -179,7 +188,7 @@ class SolarSystemInformationTest {
         String actualUserID = "AB1234";
         String actualUserPassword = "aabbcC123456";
         String expectedObjectNaming = "Not Allowed";
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
@@ -190,7 +199,7 @@ class SolarSystemInformationTest {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "A99942Apo138M";
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         assertTrue(solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
     }
@@ -200,7 +209,7 @@ class SolarSystemInformationTest {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "Z";
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         assertFalse(solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
     }
@@ -210,7 +219,7 @@ class SolarSystemInformationTest {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "A99942Apo138M";
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         assertTrue(solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
     }
@@ -220,7 +229,7 @@ class SolarSystemInformationTest {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "A99942Apo138M";
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         assertTrue(solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
     }
@@ -230,10 +239,10 @@ class SolarSystemInformationTest {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "A99942Apo1M";
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         String actualAstronomicalObjectClassificationCode1 = "A99942Apo138M";
-        SolarSystemInformation solarSystemInformation1 = new SolarSystemInformation(actualUserID, actualUserPassword);
+        SolarSystemInformation solarSystemInformation1 = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         assertTrue(solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
         assertTrue(solarSystemInformation1.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode1));
@@ -244,7 +253,7 @@ class SolarSystemInformationTest {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "S99942Apo138M";
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         assertTrue(solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
     }
@@ -253,9 +262,9 @@ class SolarSystemInformationTest {
     public void initialiseAOCDetailsTestAllExamples(){
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
-        assertTrue(solarSystemInformation.initialiseAOCDetailsValidate("SSun27TL"));
+        assertTrue (solarSystemInformation.initialiseAOCDetailsValidate("SSun27TL"));
         assertTrue(solarSystemInformation.initialiseAOCDetailsValidate("PMer58M"));
         assertTrue(solarSystemInformation.initialiseAOCDetailsValidate("PEar150M"));
         assertTrue(solarSystemInformation.initialiseAOCDetailsValidate("MMoo384T"));
@@ -273,10 +282,13 @@ class SolarSystemInformationTest {
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
+        String actualAstronomicalObjectClassificationCode = "SSun27TL";
 
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
-        expect(mockWebService.getStatusInfo("SSun27TL")).andReturn("Sun");
+        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("Sun");
         replay(mockWebService);
+
+        String s = solarSystemInformation.initialiseAOCDetailsValidate();
     }
 }

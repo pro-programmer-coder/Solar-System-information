@@ -14,10 +14,11 @@ public class SolarSystemInformation {
     private BigDecimal semiMajorAxis;
     private BigDecimal mass;
 
+    private IWebService webService;
 
-
-    public SolarSystemInformation(String userID, String password) {
+    public SolarSystemInformation(String userID, String password, IWebService webService) {
         if(userID.matches("[A-Z][A-Z]\\d\\d\\d\\d") && !userID.substring(2).equals("0000") && password.length() >= 10 && validatePassword(password)) {
+            this.webService = webService;
         }
         else{
             objectName = "Not Allowed";
@@ -29,6 +30,7 @@ public class SolarSystemInformation {
             semiMajorAxis = new BigDecimal("0");
             mass = new BigDecimal("0");
         }
+
     }
 
     public String getObjectType() {
@@ -121,11 +123,10 @@ public class SolarSystemInformation {
         this.mass = mass;
     }
 
-    public boolean initialiseAOCDetailsValidate(String AstronomicalObjectClassificationCode) {
+    public String initialiseAOCDetailsValidate(String AstronomicalObjectClassificationCode) {
         if(AstronomicalObjectClassificationCode.matches("^(S|P|M|D|A|C)\\d{0,8}([A-Z][a-z][a-z]).*\\d{1,3}(T|M|B|L|TL)")){
-
-            return true;
+            webService.getStatusInfo(AstronomicalObjectClassificationCode);
         }
-        return false;
+        return "No such classification or SMA code";
     }
 }
