@@ -1,8 +1,18 @@
 package Core.SolarInformation;
 
+import java.math.BigDecimal;
+
 public class SolarSystemInformation {
+    private String astronomicalObjectClassificationCode;
     private String objectType;
     private String objectName;
+    private boolean exists;
+    private int orbitalPeriod;
+    private BigDecimal radius;
+    private BigDecimal semiMajorAxis;
+    private BigDecimal mass;
+
+
 
     public SolarSystemInformation(String userID, String password) {
         if(userID.matches("[A-Z][A-Z]\\d\\d\\d\\d") && !userID.substring(2).equals("0000") && password.length() >= 10 && validatePassword(password)) {
