@@ -15,4 +15,13 @@ class SolarSystemInformationTest {
 
         assertEquals(expectedUserID, solarSystemInformation.getUserID());
     }
+
+    @Test
+    public void invalidUserIDTooLongLetters(){
+        String actualUserID = "ABC1234";
+        String expectedUserID = "Not allowed";
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID);
+
+        assertEquals(expectedUserID, solarSystemInformation.getUserID());
+    }
 }
