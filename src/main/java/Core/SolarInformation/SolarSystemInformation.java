@@ -24,6 +24,7 @@ public class SolarSystemInformation {
     private boolean validatePassword(String password){
         boolean lower = false;
         boolean upper = false;
+        boolean symbol = false;
         for(char character : password.toCharArray()){
             if(String.valueOf(character).matches("[A-Z]")){
                 upper = true;
@@ -31,11 +32,14 @@ public class SolarSystemInformation {
             if(String.valueOf(character).matches("[a-z]")){
                 lower = true;
             }
+            if(String.valueOf(character).matches("\\W")){
+                symbol = true;
+            }
             if(!String.valueOf(character).matches("[A-Za-z1-9\\W]")){
                 return false;
             }
         }
-        if(lower && upper) {
+        if(lower && upper && symbol) {
             return true;
         }
         else{
