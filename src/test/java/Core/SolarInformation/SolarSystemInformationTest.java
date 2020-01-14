@@ -188,4 +188,6 @@ class SolarSystemInformationTest {
         assertTrue(solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
     }
 
+
+
 }

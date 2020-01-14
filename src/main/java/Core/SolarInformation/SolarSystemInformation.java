@@ -120,12 +120,7 @@ public class SolarSystemInformation {
     }
 
     public boolean initialiseAOCDetailsValidate(String AstronomicalObjectClassificationCode) {
-        if(AstronomicalObjectClassificationCode.toCharArray()[0] == 'S' ||
-                AstronomicalObjectClassificationCode.toCharArray()[0] == 'P' ||
-                AstronomicalObjectClassificationCode.toCharArray()[0] == 'M' ||
-                AstronomicalObjectClassificationCode.toCharArray()[0] == 'D' ||
-                AstronomicalObjectClassificationCode.toCharArray()[0] == 'A' ||
-                AstronomicalObjectClassificationCode.toCharArray()[0] == 'C'){
+        if(AstronomicalObjectClassificationCode.matches("^(S|P|M|D|A|C).*")){
             return true;
         }
         return false;
