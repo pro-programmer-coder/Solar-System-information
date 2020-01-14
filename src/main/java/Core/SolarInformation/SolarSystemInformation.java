@@ -22,11 +22,20 @@ public class SolarSystemInformation {
     }
 
     private boolean validatePassword(String password){
+        boolean lower = false;
         for(char character : password.toCharArray()){
+            if(String.valueOf(character).matches("[a-z]")){
+                lower = true;
+            }
             if(!String.valueOf(character).matches("[A-Za-z1-9\\W]")){
                 return false;
             }
         }
-        return true;
+        if(lower) {
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
