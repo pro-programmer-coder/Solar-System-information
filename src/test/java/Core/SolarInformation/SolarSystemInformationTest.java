@@ -10,9 +10,9 @@ class SolarSystemInformationTest {
     @Test
     public void validUserID(){
         String actualUserID = "AB1234";
-        String expected = "AB1234";
+        String expectedUserID = "AB1234";
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID);
 
-        assertEquals(expected, solarSystemInformation.getUserID());
+        assertEquals(expectedUserID, solarSystemInformation.getUserID());
     }
 }
