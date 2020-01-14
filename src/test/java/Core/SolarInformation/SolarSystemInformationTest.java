@@ -100,4 +100,15 @@ class SolarSystemInformationTest {
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
     }
+
+    @Test
+    public void testInvalidPasswordTooShort(){
+        String actualUserID = "AB1234";
+        String actualUserPassword = "AaBbCc1";
+        String expectedObjectNaming = "Not allowed";
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+
+        assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
+        assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
+    }
 }

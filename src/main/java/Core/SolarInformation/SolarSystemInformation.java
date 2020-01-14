@@ -5,7 +5,7 @@ public class SolarSystemInformation {
     private String objectName;
 
     public SolarSystemInformation(String userID, String password) {
-        if(userID.matches("[A-Z][A-Z]\\d\\d\\d\\d") && !userID.substring(2).equals("0000")) {
+        if(userID.matches("[A-Z][A-Z]\\d\\d\\d\\d") && !userID.substring(2).equals("0000") && password.length() >= 10) {
         }
         else{
             objectName = "Not allowed";
