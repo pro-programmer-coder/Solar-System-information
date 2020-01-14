@@ -1,6 +1,13 @@
 package Core.SolarInformation;
 
+import Core.WebService.IWebService;
+import org.easymock.EasyMock;
 import org.junit.jupiter.api.Test;
+import static org.easymock.EasyMock.createMock;
+import static org.easymock.EasyMock.expect;
+import static org.easymock.EasyMock.expectLastCall;
+import static org.easymock.EasyMock.replay;
+import static org.easymock.EasyMock.verify;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -261,5 +268,15 @@ class SolarSystemInformationTest {
         assertTrue(solarSystemInformation.initialiseAOCDetailsValidate("CHal3B"));
     }
 
+    @Test
+    public void getStatusInfoWebService(){
+        IWebService mockWebService = EasyMock.createMock(IWebService.class);
+        String actualUserID = "AB1234";
+        String actualUserPassword = "AaBbCc1!2?";
 
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
+
+        expect(mockWebService.getStatusInfo("SSun27TL")).andReturn("Sun");
+        replay(mockWebService);
+    }
 }
