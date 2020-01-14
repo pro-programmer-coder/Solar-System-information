@@ -10,8 +10,9 @@ class SolarSystemInformationTest {
     @Test
     public void validUserID(){
         String actualUserID = "AB1234";
+        String actualUserPassword = "AaBbCc1!2?";
         String expectedObjectNaming = null;
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
@@ -20,8 +21,9 @@ class SolarSystemInformationTest {
     @Test
     public void invalidUserIDTooLongLetters(){
         String actualUserID = "ABC1234";
+        String actualUserPassword = "AaBbCc1!2?";
         String expectedObjectNaming = "Not allowed";
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
@@ -30,8 +32,9 @@ class SolarSystemInformationTest {
     @Test
     public void invalidUserIDTooShortLetters(){
         String actualUserID = "A1234";
+        String actualUserPassword = "AaBbCc1!2?";
         String expectedObjectNaming = "Not allowed";
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
@@ -40,8 +43,9 @@ class SolarSystemInformationTest {
     @Test
     public void invalidUserIDTooShortNumbers(){
         String actualUserID = "AB123";
+        String actualUserPassword = "AaBbCc1!2?";
         String expectedObjectNaming = "Not allowed";
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
@@ -50,8 +54,9 @@ class SolarSystemInformationTest {
     @Test
     public void invalidUserIDTooLongNumbers(){
         String actualUserID = "AB12345";
+        String actualUserPassword = "AaBbCc1!2?";
         String expectedObjectNaming = "Not allowed";
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
@@ -60,22 +65,26 @@ class SolarSystemInformationTest {
     @Test
     public void invalidUserIDIncorrectCase(){
         String actualUserID = "Ab1234";
+        String actualUserPassword = "AaBbCc1!2?";
         String expectedObjectNaming = "Not allowed";
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
 
         String actualUserID1 = "bA1234";
-        String expectedUserID1 = "Not allowed";
-        SolarSystemInformation solarSystemInformation1 = new SolarSystemInformation(actualUserID1);
+        SolarSystemInformation solarSystemInformation1 = new SolarSystemInformation(actualUserID1, actualUserPassword);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
+
+        assertEquals(expectedObjectNaming, solarSystemInformation1.getObjectName());
+        assertEquals(expectedObjectNaming, solarSystemInformation1.getObjectType());
     }
 
     @Test
     public void invalidUserID4ConsecutiveZeros(){
         String actualUserID = "AB0000";
+        String actualUserPassword = "AaBbCc1!2?";
         String expectedObjectNaming = "Not allowed";
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
