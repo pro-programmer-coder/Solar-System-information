@@ -133,4 +133,15 @@ class SolarSystemInformationTest {
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
     }
+
+    @Test
+    public void testInvalidPasswordIncludeANonSymbol_(){
+        String actualUserID = "AB1234";
+        String actualUserPassword = "AaBb_Cc1";
+        String expectedObjectNaming = "Not allowed";
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword);
+
+        assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
+        assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
+    }
 }
