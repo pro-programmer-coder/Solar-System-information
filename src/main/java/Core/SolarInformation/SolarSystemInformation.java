@@ -188,16 +188,6 @@ public class SolarSystemInformation {
 
     @Override
     public String toString() {
-        return "SolarSystemInformation{" +
-                "astronomicalObjectClassificationCode='" + astronomicalObjectClassificationCode + '\'' +
-                ", objectType='" + objectType + '\'' +
-                ", objectName='" + objectName + '\'' +
-                ", exists=" + exists +
-                ", orbitalPeriod=" + orbitalPeriod +
-                ", radius=" + radius +
-                ", semiMajorAxis=" + semiMajorAxis +
-                ", mass=" + mass +
-                ", webService=" + webService +
-                '}';
+        return objectType + ", " + objectName + "[" + astronomicalObjectClassificationCode + "] " + semiMajorAxis + " km, " + mass + " kg";
     }
 }
