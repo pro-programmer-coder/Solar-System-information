@@ -129,6 +129,7 @@ public class SolarSystemInformation {
         this.mass = mass;
     }
 
+
     public String initialiseAOCDetailsValidate(String AstronomicalObjectClassificationCode) throws Exception {
         if(AstronomicalObjectClassificationCode.matches("^(S|P|M|D|A|C)\\d{0,8}([A-Z][a-z][a-z])\\d{1,3}(T|M|B|L|TL)")){
                 String AocReturn = null;
