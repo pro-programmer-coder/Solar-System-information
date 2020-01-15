@@ -302,10 +302,32 @@ class SolarSystemInformationTest {
     }
 
     @Test
-    public void initialiseAOCDetailsinValidateNotObjectName(){
+    public void initialiseAOCDetailsInvalidateNotObjectName(){
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PEarth150M";
+        IWebService mockWebService = EasyMock.createMock(IWebService.class);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
+
+        assertEquals("No such classification or SMA code",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
+    }
+
+    @Test
+    public void initialiseAOCDetailsInvalidateSmaCode(){
+        String actualUserID = "AB1234";
+        String actualUserPassword = "AaBbCc1!2?";
+        String actualAstronomicalObjectClassificationCode = "PEar1500M";
+        IWebService mockWebService = EasyMock.createMock(IWebService.class);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
+
+        assertEquals("No such classification or SMA code",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
+    }
+
+    @Test
+    public void initialiseAOCDetailsInvalidateDistanceCode(){
+        String actualUserID = "AB1234";
+        String actualUserPassword = "AaBbCc1!2?";
+        String actualAstronomicalObjectClassificationCode = "PEar150E";
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
