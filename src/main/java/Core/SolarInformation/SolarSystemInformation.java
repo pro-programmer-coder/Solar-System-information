@@ -3,6 +3,7 @@ package Core.SolarInformation;
 import Core.WebService.IWebService;
 
 import java.math.BigDecimal;
+import java.util.stream.Stream;
 
 public class SolarSystemInformation {
     private String astronomicalObjectClassificationCode;
@@ -123,10 +124,23 @@ public class SolarSystemInformation {
         this.mass = mass;
     }
 
-    public String initialiseAOCDetailsValidate(String AstronomicalObjectClassificationCode) {
+    public String initialiseAOCDetailsValidate(String AstronomicalObjectClassificationCode) throws Exception {
         if(AstronomicalObjectClassificationCode.matches("^(S|P|M|D|A|C)\\d{0,8}([A-Z][a-z][a-z])\\d{1,3}(T|M|B|L|TL)")){
-            String s = webService.getStatusInfo(AstronomicalObjectClassificationCode);
-            return s;
+                String AocReturn = null;
+                AocReturn = webService.getStatusInfo(AstronomicalObjectClassificationCode);
+                String[] AocReturnSplit = AocReturn.split(",");
+                if(AocReturnSplit.length != 7){
+                    throw new Exception("Not right amount of information");
+                }
+                setAstronomicalObjectClassificationCode(AocReturnSplit[0]);
+                setObjectType(AocReturnSplit[1]);
+                setObjectName(AocReturnSplit[2]);
+                setOrbitalPeriod(Integer.valueOf(AocReturnSplit[3]));
+                setRadius(new BigDecimal(AocReturnSplit[4]));
+                setSemiMajorAxis(new BigDecimal(AocReturnSplit[5]));
+                setMass(new BigDecimal(AocReturnSplit[6]));
+                setExists(true);
+                return AocReturn;
         }
         return "No such classification or SMA code";
     }
