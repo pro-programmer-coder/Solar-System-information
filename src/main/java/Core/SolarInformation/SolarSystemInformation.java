@@ -146,7 +146,12 @@ public class SolarSystemInformation {
     }
 
     private void setMass(BigDecimal mass) {
-        this.mass = mass;
+        if(mass.compareTo(BigDecimal.valueOf(0)) == 1) {
+            this.mass = mass;
+        }
+        else{
+            this.mass = BigDecimal.valueOf(0);
+        }
     }
 
 
