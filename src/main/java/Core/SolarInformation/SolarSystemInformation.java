@@ -39,7 +39,12 @@ public class SolarSystemInformation {
     }
 
     private void setObjectType(String objectType) {
-        this.objectType = objectType;
+        if(objectType.equals("Planet") ||objectType.equals("Star") ||objectType.equals("Moon") ||objectType.equals("Dwarf Planet") ||objectType.equals("Asteroid") ||objectType.equals("Comet")) {
+            this.objectType = objectType;
+        }
+        else{
+            this.objectType = "Not Allowed";
+        }
     }
 
     public String getObjectName() {
