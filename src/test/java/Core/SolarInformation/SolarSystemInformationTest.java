@@ -207,10 +207,10 @@ class SolarSystemInformationTest {
 
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
-        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,57909050,330110000000000000000000");
+        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
 
-        assertEquals("PMer58M,Planet,Mercury,88,2439.4,57909050,330110000000000000000000",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
+        assertEquals("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
 
         verify(mockWebService);    }
 
@@ -232,10 +232,10 @@ class SolarSystemInformationTest {
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
-        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,57909050,330110000000000000000000");
+        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
 
-        assertEquals("PMer58M,Planet,Mercury,88,2439.4,57909050,330110000000000000000000",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
+        assertEquals("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
 
         verify(mockWebService);    }
 
@@ -246,10 +246,10 @@ class SolarSystemInformationTest {
         String actualAstronomicalObjectClassificationCode = "PMer58M";
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
-        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,57909050,330110000000000000000000");
+        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
 
-        assertEquals("PMer58M,Planet,Mercury,88,2439.4,57909050,330110000000000000000000",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
+        assertEquals("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
 
         verify(mockWebService);
     }
@@ -262,10 +262,10 @@ class SolarSystemInformationTest {
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
-        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,57909050,330110000000000000000000");
+        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
 
-        assertEquals("PMer58M,Planet,Mercury,88,2439.4,57909050,330110000000000000000000",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
+        assertEquals("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
 
         verify(mockWebService);
 
@@ -279,10 +279,10 @@ class SolarSystemInformationTest {
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
-        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,57909050,330110000000000000000000");
+        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
 
-        assertEquals("PMer58M,Planet,Mercury,88,2439.4,57909050,330110000000000000000000",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
+        assertEquals("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
 
         verify(mockWebService);
     }
@@ -295,7 +295,7 @@ class SolarSystemInformationTest {
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
-        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,57909050,330110000000000000000000");
+        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
 
         solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode);
@@ -372,7 +372,7 @@ class SolarSystemInformationTest {
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
-        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,57909050,330110000000000000000000");
+        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
 
         solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
@@ -388,7 +388,7 @@ class SolarSystemInformationTest {
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
-        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Mercury,88,2439.4,57909050,330110000000000000000000");
+        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
 
         assertThrows(Exception.class, () -> solarSystemInformation.initialiseAOCDetailsValidate("PMer58M"));
@@ -404,7 +404,7 @@ class SolarSystemInformationTest {
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
-        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,57909050,330110000000000000000000");
+        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
 
         solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
@@ -421,7 +421,7 @@ class SolarSystemInformationTest {
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
-        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58,Planet,Mercury,88,2439.4,57909050,330110000000000000000000");
+        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58,Planet,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
 
         solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
@@ -438,7 +438,7 @@ class SolarSystemInformationTest {
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
-        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,57909050,330110000000000000000000");
+        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
 
         solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
@@ -456,7 +456,7 @@ class SolarSystemInformationTest {
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
-        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Big Planet,Mercury,88,2439.4,57909050,330110000000000000000000");
+        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Big Planet,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
 
         solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
@@ -473,7 +473,7 @@ class SolarSystemInformationTest {
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
-        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,57909050,330110000000000000000000");
+        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
 
         solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
@@ -490,7 +490,7 @@ class SolarSystemInformationTest {
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
-        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury planet,88,2439.4,57909050,330110000000000000000000");
+        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury planet,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
 
         solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
@@ -507,7 +507,7 @@ class SolarSystemInformationTest {
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
-        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,99942 Apophis,88,2439.4,57909050,330110000000000000000000");
+        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,99942 Apophis,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
 
         solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
@@ -524,7 +524,7 @@ class SolarSystemInformationTest {
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
-        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,57909050,330110000000000000000000");
+        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
 
         solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
@@ -541,7 +541,7 @@ class SolarSystemInformationTest {
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
-        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,-88,2439.4,57909050,330110000000000000000000");
+        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,-88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
 
         solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
@@ -559,7 +559,7 @@ class SolarSystemInformationTest {
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
-        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,57909050,330110000000000000000000");
+        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
 
         solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
@@ -576,7 +576,7 @@ class SolarSystemInformationTest {
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
-        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,-2439.4,57909050,330110000000000000000000");
+        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,-2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
 
         solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
@@ -593,7 +593,7 @@ class SolarSystemInformationTest {
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
-        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,57909050,3.3011e23");
+        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
 
         solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
@@ -610,7 +610,7 @@ class SolarSystemInformationTest {
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
-        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,57909050,-3.3011e23");
+        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,5.79e7,-3.3011e23");
         replay(mockWebService);
 
         solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
