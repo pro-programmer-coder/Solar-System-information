@@ -52,7 +52,12 @@ public class SolarSystemInformation {
     }
 
     private void setObjectName(String objectName) {
-        this.objectName = objectName;
+        if(objectName.matches("\\d{0,8}\\s?([A-Z][a-z]+)+")) {
+            this.objectName = objectName;
+        }
+        else{
+            this.objectName = "Not Allowed";
+        }
     }
 
     private boolean validatePassword(String password){
