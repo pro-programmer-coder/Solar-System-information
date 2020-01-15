@@ -24,7 +24,7 @@ public class SolarSystemInformation {
         else{
             objectName = "Not Allowed";
             objectType = "Not Allowed";
-            astronomicalObjectClassificationCode = "N\\A";
+            astronomicalObjectClassificationCode = "N/A";
             exists = false;
             orbitalPeriod = 0;
             radius = new BigDecimal("0");
@@ -81,7 +81,12 @@ public class SolarSystemInformation {
     }
 
     private void setAstronomicalObjectClassificationCode(String astronomicalObjectClassificationCode) {
-        this.astronomicalObjectClassificationCode = astronomicalObjectClassificationCode;
+        if(astronomicalObjectClassificationCode.matches("^(S|P|M|D|A|C)\\d{0,8}([A-Z][a-z][a-z])\\d{1,3}(T|M|B|L|TL)")) {
+            this.astronomicalObjectClassificationCode = astronomicalObjectClassificationCode;
+        }
+        else {
+            this.astronomicalObjectClassificationCode = "N/A";
+        }
     }
 
     public boolean isExists() {
@@ -129,9 +134,13 @@ public class SolarSystemInformation {
                 String AocReturn = null;
                 AocReturn = webService.getStatusInfo(AstronomicalObjectClassificationCode);
                 String[] AocReturnSplit = AocReturn.split(",");
-                if(AocReturnSplit.length != 7){
+                if(AocReturnSplit.length == 1){
+                    return "No such classification or SMA code";
+                }
+                else if(AocReturnSplit.length != 7){
                     throw new Exception("Not right amount of information");
                 }
+
                 setAstronomicalObjectClassificationCode(AocReturnSplit[0]);
                 setObjectType(AocReturnSplit[1]);
                 setObjectName(AocReturnSplit[2]);
