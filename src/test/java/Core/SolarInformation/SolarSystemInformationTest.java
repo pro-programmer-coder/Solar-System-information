@@ -333,4 +333,19 @@ class SolarSystemInformationTest {
 
         assertEquals("No such classification or SMA code",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
     }
+
+    @Test
+    public void initialiseAOCDetailsCantFindInformationOnInterface(){
+        String actualUserID = "AB1234";
+        String actualUserPassword = "AaBbCc1!2?";
+        String actualAstronomicalObjectClassificationCode = "PEvr560T";
+        IWebService mockWebService = EasyMock.createMock(IWebService.class);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
+
+        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("No such classification or SMA code");
+        replay(mockWebService);
+
+        assertEquals("No such classification or SMA code",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
+        verify(mockWebService);
+    }
 }
