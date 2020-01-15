@@ -125,7 +125,8 @@ public class SolarSystemInformation {
 
     public String initialiseAOCDetailsValidate(String AstronomicalObjectClassificationCode) {
         if(AstronomicalObjectClassificationCode.matches("^(S|P|M|D|A|C)\\d{0,8}([A-Z][a-z][a-z]).*\\d{1,3}(T|M|B|L|TL)")){
-            webService.getStatusInfo(AstronomicalObjectClassificationCode);
+            String s = webService.getStatusInfo(AstronomicalObjectClassificationCode);
+            return s;
         }
         return "No such classification or SMA code";
     }
