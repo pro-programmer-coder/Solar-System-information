@@ -461,4 +461,21 @@ class SolarSystemInformationTest {
 
         verify(mockWebService);
     }
+
+    @Test
+    public void testSetterForAstronomicalObjectClassificationObjectNameWithValidCode() throws Exception {
+        String actualUserID = "AB1234";
+        String actualUserPassword = "AaBbCc1!2?";
+        String actualAstronomicalObjectClassificationCode = "PMer58M";
+        IWebService mockWebService = EasyMock.createMock(IWebService.class);
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
+
+        expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,57909050,330110000000000000000000");
+        replay(mockWebService);
+
+        solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
+        assertEquals("Mercury", solarSystemInformation.getObjectName());
+
+        verify(mockWebService);
+    }
 }
