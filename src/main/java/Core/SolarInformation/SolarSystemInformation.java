@@ -112,7 +112,12 @@ public class SolarSystemInformation {
     }
 
     private void setOrbitalPeriod(int orbitalPeriod) {
-        this.orbitalPeriod = orbitalPeriod;
+        if(orbitalPeriod > 0) {
+            this.orbitalPeriod = orbitalPeriod;
+        }
+        else{
+            this.orbitalPeriod = 0;
+        }
     }
 
     public BigDecimal getRadius() {
@@ -120,7 +125,12 @@ public class SolarSystemInformation {
     }
 
     private void setRadius(BigDecimal radius) {
-        this.radius = radius;
+        if(radius.compareTo(BigDecimal.valueOf(0)) == 1){
+            this.radius = radius;
+        }
+        else{
+            this.radius = BigDecimal.valueOf(0);
+        }
     }
 
     public BigDecimal getSemiMajorAxis() {
@@ -163,5 +173,6 @@ public class SolarSystemInformation {
                 return AocReturn;
         }
         return "No such classification or SMA code";
+
     }
 }
