@@ -138,7 +138,12 @@ public class SolarSystemInformation {
     }
 
     private void setSemiMajorAxis(BigDecimal semiMajorAxis) {
-        this.semiMajorAxis = semiMajorAxis;
+        if(semiMajorAxis.compareTo(BigDecimal.valueOf(0)) == 1) {
+            this.semiMajorAxis = semiMajorAxis;
+        }
+        else{
+            this.semiMajorAxis = BigDecimal.valueOf(0);
+        }
     }
 
     public BigDecimal getMass() {
@@ -179,5 +184,20 @@ public class SolarSystemInformation {
         }
         return "No such classification or SMA code";
 
+    }
+
+    @Override
+    public String toString() {
+        return "SolarSystemInformation{" +
+                "astronomicalObjectClassificationCode='" + astronomicalObjectClassificationCode + '\'' +
+                ", objectType='" + objectType + '\'' +
+                ", objectName='" + objectName + '\'' +
+                ", exists=" + exists +
+                ", orbitalPeriod=" + orbitalPeriod +
+                ", radius=" + radius +
+                ", semiMajorAxis=" + semiMajorAxis +
+                ", mass=" + mass +
+                ", webService=" + webService +
+                '}';
     }
 }
