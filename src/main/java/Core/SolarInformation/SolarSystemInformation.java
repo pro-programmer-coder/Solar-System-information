@@ -25,25 +25,25 @@ public class SolarSystemInformation {
             //WebService can't find user from username and password combination
             if(!this.webService.authenticate(userID,password)){
                 //run setters for invalid password
-                inValidUsrPassword();
+                inValidUsrPasswordOrAOC();
             }
         }
         else{
-            inValidUsrPassword();
+            inValidUsrPasswordOrAOC();
         }
 
     }
 
     //default values for user/password not validated by program or webservice interface
-    public void inValidUsrPassword(){
+    public void inValidUsrPasswordOrAOC(){
         objectName = "Not Allowed";
         objectType = "Not Allowed";
         astronomicalObjectClassificationCode = " ";
         exists = false;
         orbitalPeriod = 0;
-        radius = new BigDecimal("0");
-        semiMajorAxis = new BigDecimal("0");
-        mass = new BigDecimal("0");
+        radius = new BigDecimal(0);
+        semiMajorAxis = new BigDecimal(0);
+        mass = new BigDecimal(0);
     }
 
     public String getObjectType() {
@@ -103,21 +103,29 @@ public class SolarSystemInformation {
         return astronomicalObjectClassificationCode;
     }
 
-    private void setAstronomicalObjectClassificationCode(String astronomicalObjectClassificationCode) {
+    private void setAstronomicalObjectClassificationCode(String astronomicalObjectClassificationCode) throws Exception {
         //validate AOC before setting it
-        if(validateAOC(astronomicalObjectClassificationCode)) {
-            this.astronomicalObjectClassificationCode = astronomicalObjectClassificationCode;
-        }
-        //validation fails
-        else {
+        try {
+            if (validateAOC(astronomicalObjectClassificationCode)) {
+                this.astronomicalObjectClassificationCode = astronomicalObjectClassificationCode;
+            }
+            //validation fails
+            else {
+                this.astronomicalObjectClassificationCode = "Not Allowed";
+            }
+        }catch(Exception e){
             this.astronomicalObjectClassificationCode = "Not Allowed";
         }
     }
 
     //validate AOC
-    private boolean validateAOC(String astronomicalObjectClassificationCode){
+    private boolean validateAOC(String astronomicalObjectClassificationCode) throws Exception {
         //Start with Object Type Letter, 0-8 digits, Planet name Capital letter followed by 2 lower case letter, SMA 1-3 digits, SMA unit Letter
-        return astronomicalObjectClassificationCode.matches("^([SPMDAC])\\d{0,8}([A-Z][a-z][a-z])\\d{1,3}(T|M|B|L|TL)");
+        if (astronomicalObjectClassificationCode.matches("^([SPMDAC])\\d{0,8}([A-Z][a-z][a-z])\\d{1,3}(T|M|B|L|TL)")) {
+            return true;
+        } else {
+            throw new Exception("AOC Not Formatted Correctly");
+        }
     }
 
     public boolean isExists() {
@@ -196,13 +204,15 @@ public class SolarSystemInformation {
                 String[] AocReturnSplit = AocReturn.split(",");
                 //if no ','
                 if(AocReturnSplit.length == 1){
+                    inValidUsrPasswordOrAOC();
                     setExists(false);
                     return "No such astronomical object classification code";
                 }
                 //if return doesn't return right amount of data
                 else if(AocReturnSplit.length != 7){
+                    inValidUsrPasswordOrAOC();
                     setExists(false);
-                    throw new Exception("No such astronomical object classification code\nNot right amount of information");
+                    throw new Exception("No such astronomical object classification code");
                 }
 
                 //setters for the return data
@@ -218,7 +228,6 @@ public class SolarSystemInformation {
         }
         setExists(false);
         return "No such astronomical object classification code";
-
     }
 
     // toString as detailed in requirements
