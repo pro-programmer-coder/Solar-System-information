@@ -122,10 +122,18 @@ class SolarSystemInformationTest {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
         String expectedObjectNaming = null;
+
+        IWebService mockWebService = EasyMock.createMock(IWebService.class);
+
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
+        replay(mockWebService);
+
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
+
+        verify(mockWebService);
     }
 
     @Test

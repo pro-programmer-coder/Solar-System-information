@@ -19,8 +19,17 @@ public class SolarSystemInformation {
 
     public SolarSystemInformation(String userID, String password, IWebService webService) {
         if(userID.matches("[A-Z][A-Z]\\d\\d\\d\\d") && !userID.substring(2).equals("0000") && password.length() >= 10 && validatePassword(password)) {
-            webService.authenticate(userID,password);
             this.webService = webService;
+            if(!this.webService.authenticate(userID,password)){
+                objectName = "Not Allowed";
+                objectType = "Not Allowed";
+                astronomicalObjectClassificationCode = "N/A";
+                exists = false;
+                orbitalPeriod = 0;
+                radius = new BigDecimal("0");
+                semiMajorAxis = new BigDecimal("0");
+                mass = new BigDecimal("0");
+            }
         }
         else{
             objectName = "Not Allowed";
