@@ -1,7 +1,6 @@
 package Core.SolarInformation;
 
 import Core.WebService.IWebService;
-
 import java.math.BigDecimal;
 
 public class SolarSystemInformation {
@@ -197,34 +196,34 @@ public class SolarSystemInformation {
     public String initialiseAOCDetailsValidate(String astronomicalObjectClassificationCode) throws Exception {
         //validate AOC code first before call to interface
         if(validateAOC(astronomicalObjectClassificationCode)){
-                String AocReturn = null;
-                //return from web service
-                AocReturn = webService.getStatusInfo(astronomicalObjectClassificationCode);
-                //split return using ',' as this is what gets returned
-                String[] AocReturnSplit = AocReturn.split(",");
-                //if no ','
-                if(AocReturnSplit.length == 1){
-                    inValidUsrPasswordOrAOC();
-                    setExists(false);
-                    return "No such astronomical object classification code";
-                }
-                //if return doesn't return right amount of data
-                else if(AocReturnSplit.length != 7){
-                    inValidUsrPasswordOrAOC();
-                    setExists(false);
-                    throw new Exception("No such astronomical object classification code");
-                }
+            String AocReturn = null;
+            //return from web service
+            AocReturn = webService.getStatusInfo(astronomicalObjectClassificationCode);
+            //split return using ',' as this is what gets returned
+            String[] AocReturnSplit = AocReturn.split(",");
+            //if no ','
+            if(AocReturnSplit.length == 1){
+                inValidUsrPasswordOrAOC();
+                setExists(false);
+                return "No such astronomical object classification code";
+            }
+            //if return doesn't return right amount of data
+            else if(AocReturnSplit.length != 7){
+                inValidUsrPasswordOrAOC();
+                setExists(false);
+                throw new Exception("No such astronomical object classification code");
+            }
 
-                //setters for the return data
-                setAstronomicalObjectClassificationCode(AocReturnSplit[0]);
-                setObjectType(AocReturnSplit[1]);
-                setObjectName(AocReturnSplit[2]);
-                setOrbitalPeriod(Integer.parseInt(AocReturnSplit[3]));
-                setRadius(new BigDecimal(AocReturnSplit[4]));
-                setSemiMajorAxis(new BigDecimal(AocReturnSplit[5]));
-                setMass(new BigDecimal(AocReturnSplit[6]));
-                setExists(true);
-                return AocReturn;
+            //setters for the return data
+            setAstronomicalObjectClassificationCode(AocReturnSplit[0]);
+            setObjectType(AocReturnSplit[1]);
+            setObjectName(AocReturnSplit[2]);
+            setOrbitalPeriod(Integer.parseInt(AocReturnSplit[3]));
+            setRadius(new BigDecimal(AocReturnSplit[4]));
+            setSemiMajorAxis(new BigDecimal(AocReturnSplit[5]));
+            setMass(new BigDecimal(AocReturnSplit[6]));
+            setExists(true);
+            return AocReturn;
         }
         setExists(false);
         return "No such astronomical object classification code";

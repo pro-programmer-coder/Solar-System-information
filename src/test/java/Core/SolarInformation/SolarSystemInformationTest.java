@@ -835,7 +835,7 @@ class SolarSystemInformationTest {
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
 
         expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
-        expect(mockWebService.getStatusInfo(AOCCode)).andReturn("No such classification or SMA code");
+        expect(mockWebService.getStatusInfo(AOCCode)).andReturn("No such astronomical object classification code");
         replay(mockWebService);
 
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
@@ -882,11 +882,7 @@ class SolarSystemInformationTest {
 
         verify(mockWebService);
     }
-
-    @Test
-    public void fieldsSetToDummyValuesWhenAOCIsInvalid(){
-
-    }
+    
     @Test
     public void fieldsSetToDummyValuesWhenAOCIsNotFound() throws Exception {
         String actualUserID = "AB1234";
@@ -926,6 +922,7 @@ class SolarSystemInformationTest {
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
         solarSystemInformation.initialiseAOCDetailsValidate(AOCCode);
 
+        //No need to create individual tests for each one
         assertTrue(solarSystemInformation.isExists());
         assertEquals("Mercury",solarSystemInformation.getObjectName());
         assertEquals("Planet",solarSystemInformation.getObjectType());
