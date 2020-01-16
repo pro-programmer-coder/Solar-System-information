@@ -21,27 +21,24 @@ public class SolarSystemInformation {
         if(userID.matches("[A-Z][A-Z]\\d\\d\\d\\d") && !userID.substring(2).equals("0000") && password.length() >= 10 && validatePassword(password)) {
             this.webService = webService;
             if(!this.webService.authenticate(userID,password)){
-                objectName = "Not Allowed";
-                objectType = "Not Allowed";
-                astronomicalObjectClassificationCode = "N/A";
-                exists = false;
-                orbitalPeriod = 0;
-                radius = new BigDecimal("0");
-                semiMajorAxis = new BigDecimal("0");
-                mass = new BigDecimal("0");
+                inValidUsrPassword();
             }
         }
         else{
-            objectName = "Not Allowed";
-            objectType = "Not Allowed";
-            astronomicalObjectClassificationCode = "N/A";
-            exists = false;
-            orbitalPeriod = 0;
-            radius = new BigDecimal("0");
-            semiMajorAxis = new BigDecimal("0");
-            mass = new BigDecimal("0");
+            inValidUsrPassword();
         }
 
+    }
+
+    public void inValidUsrPassword(){
+        objectName = "Not Allowed";
+        objectType = "Not Allowed";
+        astronomicalObjectClassificationCode = "N/A";
+        exists = false;
+        orbitalPeriod = 0;
+        radius = new BigDecimal("0");
+        semiMajorAxis = new BigDecimal("0");
+        mass = new BigDecimal("0");
     }
 
     public String getObjectType() {
