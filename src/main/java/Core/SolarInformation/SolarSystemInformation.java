@@ -64,7 +64,7 @@ public class SolarSystemInformation {
     }
 
     private void setObjectName(String objectName) {
-        //same regular expressionb
+        //same regular expression
         if(objectName.matches("\\d{0,8}\\s?([A-Z][a-z]+)+")) {
             this.objectName = objectName;
         }
@@ -95,12 +95,7 @@ public class SolarSystemInformation {
             }
         }
         //all three formats have to be included and thus true
-        if(lower && upper && symbol) {
-            return true;
-        }
-        else{
-            return false;
-        }
+        return lower && upper && symbol;
     }
 
     public String getAstronomicalObjectClassificationCode() {
@@ -121,10 +116,7 @@ public class SolarSystemInformation {
     //validate AOC
     private boolean validateAOC(String astronomicalObjectClassificationCode){
         //Start with Object Type Letter, 0-8 digits, Planet name Capital letter followed by 2 lower case letter, SMA 1-3 digits, SMA unit Letter
-        if(astronomicalObjectClassificationCode.matches("^(S|P|M|D|A|C)\\d{0,8}([A-Z][a-z][a-z])\\d{1,3}(T|M|B|L|TL)")) {
-            return true;
-        }
-            return false;
+        return astronomicalObjectClassificationCode.matches("^([SPMDAC])\\d{0,8}([A-Z][a-z][a-z])\\d{1,3}(T|M|B|L|TL)");
     }
 
     public boolean isExists() {
@@ -155,7 +147,7 @@ public class SolarSystemInformation {
 
     private void setRadius(BigDecimal radius) {
         //if not negative number. this can't be negative
-        if(radius.compareTo(BigDecimal.valueOf(0)) == 1){
+        if(radius.compareTo(BigDecimal.valueOf(0)) > 0){
             this.radius = radius;
         }
         else{
@@ -169,7 +161,7 @@ public class SolarSystemInformation {
 
     private void setSemiMajorAxis(BigDecimal semiMajorAxis) {
         //if not negative number. this can't be negative
-        if(semiMajorAxis.compareTo(BigDecimal.valueOf(0)) == 1) {
+        if(semiMajorAxis.compareTo(BigDecimal.valueOf(0)) > 0) {
             this.semiMajorAxis = semiMajorAxis;
         }
         else{
@@ -183,7 +175,7 @@ public class SolarSystemInformation {
 
     private void setMass(BigDecimal mass) {
         //if not negative number. this can't be negative
-        if(mass.compareTo(BigDecimal.valueOf(0)) == 1) {
+        if(mass.compareTo(BigDecimal.valueOf(0)) > 0) {
             this.mass = mass;
         }
         else{
@@ -214,7 +206,7 @@ public class SolarSystemInformation {
                 setAstronomicalObjectClassificationCode(AocReturnSplit[0]);
                 setObjectType(AocReturnSplit[1]);
                 setObjectName(AocReturnSplit[2]);
-                setOrbitalPeriod(Integer.valueOf(AocReturnSplit[3]));
+                setOrbitalPeriod(Integer.parseInt(AocReturnSplit[3]));
                 setRadius(new BigDecimal(AocReturnSplit[4]));
                 setSemiMajorAxis(new BigDecimal(AocReturnSplit[5]));
                 setMass(new BigDecimal(AocReturnSplit[6]));
