@@ -882,7 +882,7 @@ class SolarSystemInformationTest {
 
         verify(mockWebService);
     }
-    
+
     @Test
     public void fieldsSetToDummyValuesWhenAOCIsNotFound() throws Exception {
         String actualUserID = "AB1234";
