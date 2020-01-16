@@ -17,9 +17,13 @@ public class SolarSystemInformation {
     private IWebService webService;
 
     public SolarSystemInformation(String userID, String password, IWebService webService) {
+        //validating username and password using Regular Expressions
+                                //2capital letters followed by 4 digits.  user not equal to 0000      password length larger then 10   validate password method
         if(userID.matches("[A-Z][A-Z]\\d\\d\\d\\d") && !userID.substring(2).equals("0000") && password.length() >= 10 && validatePassword(password)) {
             this.webService = webService;
+            //WebService can't find user from username and password combination
             if(!this.webService.authenticate(userID,password)){
+                //run setters for invalid password
                 inValidUsrPassword();
             }
         }
@@ -29,6 +33,7 @@ public class SolarSystemInformation {
 
     }
 
+    //default values for user/password not validated by program or webservice interface
     public void inValidUsrPassword(){
         objectName = "Not Allowed";
         objectType = "Not Allowed";
@@ -45,6 +50,7 @@ public class SolarSystemInformation {
     }
 
     private void setObjectType(String objectType) {
+        //Has to be certain types
         if(objectType.equals("Planet") ||objectType.equals("Star") ||objectType.equals("Moon") ||objectType.equals("Dwarf Planet") ||objectType.equals("Asteroid") ||objectType.equals("Comet")) {
             this.objectType = objectType;
         }
@@ -58,6 +64,7 @@ public class SolarSystemInformation {
     }
 
     private void setObjectName(String objectName) {
+        //same regular expressionb
         if(objectName.matches("\\d{0,8}\\s?([A-Z][a-z]+)+")) {
             this.objectName = objectName;
         }
@@ -66,11 +73,14 @@ public class SolarSystemInformation {
         }
     }
 
+    //validating the password
     private boolean validatePassword(String password){
         boolean lower = false;
         boolean upper = false;
         boolean symbol = false;
+        //each character in password
         for(char character : password.toCharArray()){
+            //if match a regular rexpression format set that to true
             if(String.valueOf(character).matches("[A-Z]")){
                 upper = true;
             }
@@ -84,6 +94,7 @@ public class SolarSystemInformation {
                 return false;
             }
         }
+        //all three formats have to be included and thus true
         if(lower && upper && symbol) {
             return true;
         }
@@ -97,12 +108,19 @@ public class SolarSystemInformation {
     }
 
     private void setAstronomicalObjectClassificationCode(String astronomicalObjectClassificationCode) {
-        if(astronomicalObjectClassificationCode.matches("^(S|P|M|D|A|C)\\d{0,8}([A-Z][a-z][a-z])\\d{1,3}(T|M|B|L|TL)")) {
+        if(validateAOC(astronomicalObjectClassificationCode)) {
             this.astronomicalObjectClassificationCode = astronomicalObjectClassificationCode;
         }
         else {
             this.astronomicalObjectClassificationCode = "N/A";
         }
+    }
+
+    private boolean validateAOC(String astronomicalObjectClassificationCode){
+        if(astronomicalObjectClassificationCode.matches("^(S|P|M|D|A|C)\\d{0,8}([A-Z][a-z][a-z])\\d{1,3}(T|M|B|L|TL)")) {
+            return true;
+        }
+            return false;
     }
 
     public boolean isExists() {
@@ -166,10 +184,10 @@ public class SolarSystemInformation {
     }
 
 
-    public String initialiseAOCDetailsValidate(String AstronomicalObjectClassificationCode) throws Exception {
-        if(AstronomicalObjectClassificationCode.matches("^(S|P|M|D|A|C)\\d{0,8}([A-Z][a-z][a-z])\\d{1,3}(T|M|B|L|TL)")){
+    public String initialiseAOCDetailsValidate(String astronomicalObjectClassificationCode) throws Exception {
+        if(validateAOC(astronomicalObjectClassificationCode)){
                 String AocReturn = null;
-                AocReturn = webService.getStatusInfo(AstronomicalObjectClassificationCode);
+                AocReturn = webService.getStatusInfo(astronomicalObjectClassificationCode);
                 String[] AocReturnSplit = AocReturn.split(",");
                 if(AocReturnSplit.length == 1){
                     return "No such classification or SMA code";

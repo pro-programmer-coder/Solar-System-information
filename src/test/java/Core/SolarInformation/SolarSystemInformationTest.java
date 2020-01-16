@@ -805,7 +805,7 @@ class SolarSystemInformationTest {
     }
 
     @Test
-    public void userNotFoundUsingStubForExample(){
+    public void userOrPasswordNotFoundUsingStubForExample(){
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
 
