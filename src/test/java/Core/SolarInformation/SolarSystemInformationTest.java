@@ -1,7 +1,7 @@
 package Core.SolarInformation;
 
 import Core.WebService.IWebService;
-import Core.WebService.StubWebService;
+import Core.WebService.StubWebServiceAuthenticateFail;
 import org.easymock.EasyMock;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -12,22 +12,24 @@ import static org.easymock.EasyMock.replay;
 import static org.easymock.EasyMock.verify;
 import static org.junit.jupiter.api.Assertions.*;
 
-//Some of the test using the WebService interface. the inputs and outputs may not match correct for actual data but they pass validation
-//May use Earth AOC code but get information back about Mercury. Essentially of the tests this is not important. Testing the external method gets called not what comes back
+//With some of the test using the WebService interface the inputs and outputs may not match correct for actual data but they pass validation
+//May use Earth AOC code but get information back about Mercury. Essentially for the tests this is not important. Testing the external method gets called but the return value needs to be correct format not factual information. just for the tests
 class SolarSystemInformationTest {
 
     static IWebService mockWebService;
 
+    //used where the mocking is not being tested but need the mock object for the test
     @BeforeAll
     public static void setup(){
         mockWebService = EasyMock.createMock(IWebService.class);
     }
 
+    //user authentication
     @Test
     public void validUserIDWhichDoesntSetTheObjectNameOrType(){
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
-        //Name and Type not set yet if usr/password valid
+        //Name and Type not set yet if usr/password is valid
         String expectedObjectNaming = null;
         String expectedObjectType = null;
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
@@ -224,6 +226,7 @@ class SolarSystemInformationTest {
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
     }
 
+    //AOC validation
     @Test
     public void initialiseAOCDetailsValidateObjectType() throws Exception {
         String actualUserID = "AB1234";
@@ -255,7 +258,7 @@ class SolarSystemInformationTest {
         replay(mockWebService);
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
-        assertEquals("No such classification or SMA code",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
+        assertEquals("No such astronomical object classification code",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
         verify(mockWebService);
     }
 
@@ -361,7 +364,7 @@ class SolarSystemInformationTest {
         replay(mockWebService);
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
-        assertEquals("No such classification or SMA code",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
+        assertEquals("No such astronomical object classification code",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
 
         verify(mockWebService);
     }
@@ -376,7 +379,7 @@ class SolarSystemInformationTest {
         replay(mockWebService);
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
-        assertEquals("No such classification or SMA code",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
+        assertEquals("No such astronomical object classification code",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
         verify(mockWebService);
     }
 
@@ -392,7 +395,7 @@ class SolarSystemInformationTest {
 
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
-        assertEquals("No such classification or SMA code",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
+        assertEquals("No such astronomical object classification code",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
         verify(mockWebService);
     }
 
@@ -410,7 +413,7 @@ class SolarSystemInformationTest {
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
 
-        assertEquals("No such classification or SMA code",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
+        assertEquals("No such astronomical object classification code",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
         verify(mockWebService);
     }
 
@@ -469,6 +472,7 @@ class SolarSystemInformationTest {
         verify(mockWebService);
     }
 
+    //Test setters. Mock is run as well as the setters are private so has to be called from a method within the class. Not test
     @Test
     public void testSetterForAstronomicalValidObjectClassificationCode() throws Exception {
         String actualUserID = "AB1234";
@@ -758,6 +762,7 @@ class SolarSystemInformationTest {
         verify(mockWebService);
     }
 
+    //ToString
     @Test void SolarSystemInformationToStringTest() throws Exception {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
@@ -776,6 +781,7 @@ class SolarSystemInformationTest {
         verify(mockWebService);
     }
 
+    //Authenticate service
     @Test
     public void validAuthenticateMethodUserHasBeenFound(){
         String actualUserID = "AB1234";
@@ -812,12 +818,31 @@ class SolarSystemInformationTest {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
 
-        IWebService stubWebService = new StubWebService();
+        IWebService stubWebService = new StubWebServiceAuthenticateFail();
 
         SolarSystemInformation solarInformationException = new SolarSystemInformation(actualUserID, actualUserPassword, stubWebService);
 
         assertEquals("Not Allowed", solarInformationException.getObjectName());
         assertEquals("Not Allowed", solarInformationException.getObjectType());
 
+    }
+
+    @Test
+    public void ABCCodeIncorrectSoSetsPlanetExistenceToFalse() throws Exception {
+        String actualUserID = "AB1234";
+        String actualUserPassword = "AaBbCc1!2?";
+        String AOCCode = "PMar78B";
+        IWebService mockWebService = EasyMock.createMock(IWebService.class);
+
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
+        expect(mockWebService.getStatusInfo(AOCCode)).andReturn("No such classification or SMA code");
+        replay(mockWebService);
+
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
+        solarSystemInformation.initialiseAOCDetailsValidate(AOCCode);
+
+        assertFalse(solarSystemInformation.isExists());
+
+        verify(mockWebService);
     }
 }

@@ -16,9 +16,10 @@ public class SolarSystemInformation {
 
     private IWebService webService;
 
+    //Brief has 2 parameters but this needs three. The webservice has to be passed for every constructor to authenticate the user
     public SolarSystemInformation(String userID, String password, IWebService webService) {
         //validating username and password using Regular Expressions
-                                //2capital letters followed by 4 digits.  user not equal to 0000      password length larger then 10   validate password method
+        //2capital letters followed by 4 digits.  user not equal to 0000      password length larger then 10   validate password method
         if(userID.matches("[A-Z][A-Z]\\d\\d\\d\\d") && !userID.substring(2).equals("0000") && password.length() >= 10 && validatePassword(password)) {
             this.webService = webService;
             //WebService can't find user from username and password combination
@@ -37,7 +38,7 @@ public class SolarSystemInformation {
     public void inValidUsrPassword(){
         objectName = "Not Allowed";
         objectType = "Not Allowed";
-        astronomicalObjectClassificationCode = "N/A";
+        astronomicalObjectClassificationCode = " ";
         exists = false;
         orbitalPeriod = 0;
         radius = new BigDecimal("0");
@@ -195,11 +196,13 @@ public class SolarSystemInformation {
                 String[] AocReturnSplit = AocReturn.split(",");
                 //if no ','
                 if(AocReturnSplit.length == 1){
-                    return "No such classification or SMA code";
+                    setExists(false);
+                    return "No such astronomical object classification code";
                 }
                 //if return doesn't return right amount of data
                 else if(AocReturnSplit.length != 7){
-                    throw new Exception("Not right amount of information");
+                    setExists(false);
+                    throw new Exception("No such astronomical object classification code\nNot right amount of information");
                 }
 
                 //setters for the return data
@@ -213,7 +216,8 @@ public class SolarSystemInformation {
                 setExists(true);
                 return AocReturn;
         }
-        return "No such classification or SMA code";
+        setExists(false);
+        return "No such astronomical object classification code";
 
     }
 

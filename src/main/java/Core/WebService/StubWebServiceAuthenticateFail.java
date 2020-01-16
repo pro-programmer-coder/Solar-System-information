@@ -3,7 +3,7 @@ package Core.WebService;
 import Core.SolarInformation.SolarInformationException;
 
 //Stub purely for an example of Stubbing
-public class StubWebService implements IWebService{
+public class StubWebServiceAuthenticateFail implements IWebService{
 
     //Authentication failed in interface
     @Override
