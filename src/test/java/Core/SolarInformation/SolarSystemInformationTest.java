@@ -785,5 +785,22 @@ class SolarSystemInformationTest {
         verify(mockWebService);
     }
 
+    @Test
+    public void userNotFound(){
+        String actualUserID = "AB1234";
+        String actualUserPassword = "AaBbCc1!2?";
+        IWebService mockWebService = EasyMock.createMock(IWebService.class);
+
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(false);
+        replay(mockWebService);
+
+        SolarSystemInformation solarInformationException = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
+
+        assertEquals("Not Allowed", solarInformationException.getObjectName());
+        assertEquals("Not Allowed", solarInformationException.getObjectType());
+
+        verify(mockWebService);
+    }
+
 
 }
