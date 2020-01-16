@@ -1,21 +1,15 @@
 package Core.SolarInformation;
 
 import Core.WebService.IWebService;
+import Core.WebService.StubWebService;
 import org.easymock.EasyMock;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.math.BigDecimal;
-
-import static org.easymock.EasyMock.createMock;
 import static org.easymock.EasyMock.expect;
-import static org.easymock.EasyMock.expectLastCall;
 import static org.easymock.EasyMock.replay;
 import static org.easymock.EasyMock.verify;
-
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class SolarSystemInformationTest {
@@ -810,5 +804,17 @@ class SolarSystemInformationTest {
         verify(mockWebService);
     }
 
+    @Test
+    public void userNotFoundUsingStubForExample(){
+        String actualUserID = "AB1234";
+        String actualUserPassword = "AaBbCc1!2?";
 
+        IWebService stubWebService = new StubWebService();
+
+        SolarSystemInformation solarInformationException = new SolarSystemInformation(actualUserID, actualUserPassword, stubWebService);
+
+        assertEquals("Not Allowed", solarInformationException.getObjectName());
+        assertEquals("Not Allowed", solarInformationException.getObjectType());
+
+    }
 }

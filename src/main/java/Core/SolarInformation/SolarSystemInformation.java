@@ -3,7 +3,6 @@ package Core.SolarInformation;
 import Core.WebService.IWebService;
 
 import java.math.BigDecimal;
-import java.util.stream.Stream;
 
 public class SolarSystemInformation {
     private String astronomicalObjectClassificationCode;
