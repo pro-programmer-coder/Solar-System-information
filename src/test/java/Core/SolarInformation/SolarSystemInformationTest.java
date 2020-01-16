@@ -847,6 +847,24 @@ class SolarSystemInformationTest {
     }
 
     @Test
+    public void AOCCodeInvalidSoSetsPlanetExistenceToFalse() throws Exception {
+        String actualUserID = "AB1234";
+        String actualUserPassword = "AaBbCc1!2?";
+        String AOCCode = "PMars78B";
+        IWebService mockWebService = EasyMock.createMock(IWebService.class);
+
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
+        replay(mockWebService);
+
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
+        solarSystemInformation.initialiseAOCDetailsValidate(AOCCode);
+
+        assertFalse(solarSystemInformation.isExists());
+
+        verify(mockWebService);
+    }
+
+    @Test
     public void AOCCodeCorrectSoSetsPlanetExistenceToTrue() throws Exception {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
