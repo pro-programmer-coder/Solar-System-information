@@ -32,10 +32,17 @@ class SolarSystemInformationTest {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
         String expectedObjectNaming = null;
+        IWebService mockWebService = EasyMock.createMock(IWebService.class);
+
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
+        replay(mockWebService);
+
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
+
+        verify(mockWebService);
     }
 
     @Test
@@ -137,10 +144,17 @@ class SolarSystemInformationTest {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
         String expectedObjectNaming = null;
+        IWebService mockWebService = EasyMock.createMock(IWebService.class);
+
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
+        replay(mockWebService);
+
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
+
+        verify(mockWebService);
     }
 
     @Test
@@ -148,10 +162,16 @@ class SolarSystemInformationTest {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?AaBbCc1!2?AaBbCc1!2?";
         String expectedObjectNaming = null;
+        IWebService mockWebService = EasyMock.createMock(IWebService.class);
+
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
+        replay(mockWebService);
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
+
+        verify(mockWebService);
     }
 
     @Test
@@ -203,25 +223,34 @@ class SolarSystemInformationTest {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PMer58M";
+
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
 
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
-
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
         expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
 
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
+
         assertEquals("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
 
-        verify(mockWebService);    }
+        verify(mockWebService);
+    }
 
     @Test
     public void initialiseAOCDetailsValidateNotObjectType() throws Exception {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "Z";
+        IWebService mockWebService = EasyMock.createMock(IWebService.class);
+
+
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
+        replay(mockWebService);
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         assertEquals("No such classification or SMA code",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
+        verify(mockWebService);
     }
 
     @Test
@@ -230,10 +259,12 @@ class SolarSystemInformationTest {
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "A99942Apo138M";
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
         expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
+
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         assertEquals("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
 
@@ -244,10 +275,14 @@ class SolarSystemInformationTest {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PMer58M";
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
+        IWebService mockWebService = EasyMock.createMock(IWebService.class);
 
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
         expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
+
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
+
 
         assertEquals("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
 
@@ -260,10 +295,12 @@ class SolarSystemInformationTest {
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PMer58M";
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
         expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
+
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         assertEquals("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
 
@@ -277,10 +314,12 @@ class SolarSystemInformationTest {
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PMer58M";
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
         expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
+
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         assertEquals("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
 
@@ -293,10 +332,12 @@ class SolarSystemInformationTest {
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PMer58M";
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
         expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
+
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode);
 
@@ -308,9 +349,15 @@ class SolarSystemInformationTest {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PEarth150M";
+        IWebService mockWebService = EasyMock.createMock(IWebService.class);
+
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
+        replay(mockWebService);
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         assertEquals("No such classification or SMA code",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
+
+        verify(mockWebService);
     }
 
     @Test
@@ -318,9 +365,13 @@ class SolarSystemInformationTest {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PEar1500M";
+        IWebService mockWebService = EasyMock.createMock(IWebService.class);
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
+        replay(mockWebService);
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         assertEquals("No such classification or SMA code",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
+        verify(mockWebService);
     }
 
     @Test
@@ -328,9 +379,15 @@ class SolarSystemInformationTest {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PEar150E";
+
+        IWebService mockWebService = EasyMock.createMock(IWebService.class);
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
+        replay(mockWebService);
+
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         assertEquals("No such classification or SMA code",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
+        verify(mockWebService);
     }
 
     @Test
@@ -339,10 +396,13 @@ class SolarSystemInformationTest {
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PEvr560T";
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
         expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("No such classification or SMA code");
         replay(mockWebService);
+
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
+
 
         assertEquals("No such classification or SMA code",solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode));
         verify(mockWebService);
@@ -354,10 +414,12 @@ class SolarSystemInformationTest {
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PMer58M";
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
         expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andThrow(new SolarInformationException());
         replay(mockWebService);
+
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         Assertions.assertThrows(SolarInformationException.class, () -> solarSystemInformation.initialiseAOCDetailsValidate("PMer58M"));
 
@@ -370,10 +432,12 @@ class SolarSystemInformationTest {
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PMer58M";
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
         expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
+
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
 
@@ -386,10 +450,13 @@ class SolarSystemInformationTest {
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PMer58M";
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
         expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
+
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
+
 
         assertThrows(Exception.class, () -> solarSystemInformation.initialiseAOCDetailsValidate("PMer58M"));
 
@@ -402,10 +469,13 @@ class SolarSystemInformationTest {
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PMer58M";
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
         expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
+
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
+
 
         solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
         assertEquals("PMer58M", solarSystemInformation.getAstronomicalObjectClassificationCode());
@@ -419,10 +489,12 @@ class SolarSystemInformationTest {
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PMer58M";
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
         expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58,Planet,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
+
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
         assertEquals("N/A", solarSystemInformation.getAstronomicalObjectClassificationCode());
@@ -436,10 +508,12 @@ class SolarSystemInformationTest {
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PMer58M";
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
         expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
+
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
         assertEquals("Planet", solarSystemInformation.getObjectType());
@@ -454,10 +528,12 @@ class SolarSystemInformationTest {
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PMer58M";
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
         expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Big Planet,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
+
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
         assertEquals("Not Allowed", solarSystemInformation.getObjectType());
@@ -471,10 +547,12 @@ class SolarSystemInformationTest {
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PMer58M";
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
         expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
+
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
         assertEquals("Mercury", solarSystemInformation.getObjectName());
@@ -488,10 +566,12 @@ class SolarSystemInformationTest {
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PMer58M";
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
         expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury planet,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
+
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
         assertEquals("Not Allowed", solarSystemInformation.getObjectName());
@@ -505,10 +585,13 @@ class SolarSystemInformationTest {
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PMer58M";
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
         expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,99942 Apophis,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
+
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
+
 
         solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
         assertEquals("99942 Apophis", solarSystemInformation.getObjectName());
@@ -522,10 +605,12 @@ class SolarSystemInformationTest {
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PMer58M";
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
         expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
+
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
         assertEquals(88, solarSystemInformation.getOrbitalPeriod());
@@ -539,10 +624,12 @@ class SolarSystemInformationTest {
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PMer58M";
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
         expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,-88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
+
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
         assertEquals(0, solarSystemInformation.getOrbitalPeriod());
@@ -557,10 +644,12 @@ class SolarSystemInformationTest {
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PMer58M";
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
         expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
+
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
         assertEquals(BigDecimal.valueOf(2439.4), solarSystemInformation.getRadius());
@@ -574,10 +663,12 @@ class SolarSystemInformationTest {
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PMer58M";
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
         expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,-2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
+
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
         assertEquals(BigDecimal.valueOf(0), solarSystemInformation.getRadius());
@@ -591,10 +682,12 @@ class SolarSystemInformationTest {
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PMer58M";
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
         expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
+
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
         assertEquals(BigDecimal.valueOf(3.3011e23), solarSystemInformation.getMass());
@@ -608,10 +701,12 @@ class SolarSystemInformationTest {
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PMer58M";
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
         expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,5.79e7,-3.3011e23");
         replay(mockWebService);
+
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
         assertEquals(BigDecimal.valueOf(0), solarSystemInformation.getMass());
@@ -625,10 +720,12 @@ class SolarSystemInformationTest {
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PMer58M";
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
         expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
+
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
         assertEquals(BigDecimal.valueOf(5.79e7), solarSystemInformation.getSemiMajorAxis());
@@ -642,10 +739,12 @@ class SolarSystemInformationTest {
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PMer58M";
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
+        expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
         expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,-5.79e7,3.3011e23");
         replay(mockWebService);
+
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
         assertEquals(BigDecimal.valueOf(0), solarSystemInformation.getSemiMajorAxis());
@@ -659,11 +758,11 @@ class SolarSystemInformationTest {
         String actualAstronomicalObjectClassificationCode = "PMer58M";
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
 
-        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
-
         expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
         expect(mockWebService.getStatusInfo(actualAstronomicalObjectClassificationCode)).andReturn("PMer58M,Planet,Mercury,88,2439.4,5.79e7,3.3011e23");
         replay(mockWebService);
+
+        SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
         assertEquals("Planet, Mercury[PMer58M] 5.79E+7 km, 3.3011E+23 kg", solarSystemInformation.toString());
