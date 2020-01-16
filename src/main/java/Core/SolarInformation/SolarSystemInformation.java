@@ -80,7 +80,7 @@ public class SolarSystemInformation {
         boolean symbol = false;
         //each character in password
         for(char character : password.toCharArray()){
-            //if match a regular rexpression format set that to true
+            //if match a regular expression format set that to true
             if(String.valueOf(character).matches("[A-Z]")){
                 upper = true;
             }

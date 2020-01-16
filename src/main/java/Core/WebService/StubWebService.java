@@ -2,8 +2,10 @@ package Core.WebService;
 
 import Core.SolarInformation.SolarInformationException;
 
+//Stub purely for an example of Stubbing
 public class StubWebService implements IWebService{
 
+    //Authentication failed in interface
     @Override
     public boolean authenticate(String userID, String password) {
         return false;

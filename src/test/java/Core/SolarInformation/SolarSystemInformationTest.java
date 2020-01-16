@@ -12,6 +12,8 @@ import static org.easymock.EasyMock.replay;
 import static org.easymock.EasyMock.verify;
 import static org.junit.jupiter.api.Assertions.*;
 
+//Some of the test using the WebService interface. the inputs and outputs may not match correct for actual data but they pass validation
+//May use Earth AOC code but get information back about Mercury. Essentially of the tests this is not important. Testing the external method gets called not what comes back
 class SolarSystemInformationTest {
 
     static IWebService mockWebService;
@@ -22,10 +24,12 @@ class SolarSystemInformationTest {
     }
 
     @Test
-    public void validUserID(){
+    public void validUserIDWhichDoesntSetTheObjectNameOrType(){
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
+        //Name and Type not set yet if usr/password valid
         String expectedObjectNaming = null;
+        String expectedObjectType = null;
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
 
         expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
@@ -34,13 +38,13 @@ class SolarSystemInformationTest {
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         assertEquals(expectedObjectNaming, solarSystemInformation.getObjectName());
-        assertEquals(expectedObjectNaming, solarSystemInformation.getObjectType());
+        assertEquals(expectedObjectType, solarSystemInformation.getObjectType());
 
         verify(mockWebService);
     }
 
     @Test
-    public void invalidUserIDTooLongLetters(){
+    public void invalidUserIDTooManyLetters(){
         String actualUserID = "ABC1234";
         String actualUserPassword = "AaBbCc1!2?";
         String expectedObjectNaming = "Not Allowed";
@@ -51,7 +55,7 @@ class SolarSystemInformationTest {
     }
 
     @Test
-    public void invalidUserIDTooShortLetters(){
+    public void invalidUserIDTooLittleLetters(){
         String actualUserID = "A1234";
         String actualUserPassword = "AaBbCc1!2?";
         String expectedObjectNaming = "Not Allowed";
@@ -62,7 +66,7 @@ class SolarSystemInformationTest {
     }
 
     @Test
-    public void invalidUserIDTooShortNumbers(){
+    public void invalidUserIDTooLittleNumbers(){
         String actualUserID = "AB123";
         String actualUserPassword = "AaBbCc1!2?";
         String expectedObjectNaming = "Not Allowed";
@@ -73,7 +77,7 @@ class SolarSystemInformationTest {
     }
 
     @Test
-    public void invalidUserIDTooLongNumbers(){
+    public void invalidUserIDTooManyNumbers(){
         String actualUserID = "AB12345";
         String actualUserPassword = "AaBbCc1!2?";
         String expectedObjectNaming = "Not Allowed";
@@ -101,7 +105,7 @@ class SolarSystemInformationTest {
     }
 
     @Test
-    public void invalidUserID4ConsecutiveZeros(){
+    public void invalidUserID4ConsecutiveZerosForNumbers(){
         String actualUserID = "AB0000";
         String actualUserPassword = "AaBbCc1!2?";
         String expectedObjectNaming = "Not Allowed";
@@ -188,7 +192,7 @@ class SolarSystemInformationTest {
     }
 
     @Test
-    public void testInValidPasswordIncludesOneOrMoreLowerCaseCharacter(){
+    public void testInValidPasswordNotIncludesOneOrMoreLowerCaseCharacters(){
         String actualUserID = "AB1234";
         String actualUserPassword = "AABBCC123456?";
         String expectedObjectNaming = "Not Allowed";
@@ -199,7 +203,7 @@ class SolarSystemInformationTest {
     }
 
     @Test
-    public void testInValidPasswordIncludesOneOrMoreUpperCase(){
+    public void testInValidPasswordNotIncludesOneOrMoreUpperCase(){
         String actualUserID = "AB1234";
         String actualUserPassword = "aabbcc123456?";
         String expectedObjectNaming = "Not Allowed";
@@ -210,7 +214,7 @@ class SolarSystemInformationTest {
     }
 
     @Test
-    public void testInValidPasswordIncludesOneOrMoreSymbol(){
+    public void testInValidPasswordNotIncludesOneOrMoreSymbol(){
         String actualUserID = "AB1234";
         String actualUserPassword = "aabbcC123456";
         String expectedObjectNaming = "Not Allowed";
@@ -240,7 +244,7 @@ class SolarSystemInformationTest {
     }
 
     @Test
-    public void initialiseAOCDetailsValidateNotObjectType() throws Exception {
+    public void initialiseAOCDetailsInValidAOCCodeNotCorrectObjectType() throws Exception {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "Z";
@@ -273,7 +277,7 @@ class SolarSystemInformationTest {
         verify(mockWebService);    }
 
     @Test
-    public void initialiseAOCDetailsValidateObjectNameNumbers() throws Exception {
+    public void initialiseAOCDetailsInValidObjectNameNumbers() throws Exception {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PMer58M";
@@ -466,7 +470,7 @@ class SolarSystemInformationTest {
     }
 
     @Test
-    public void testSetterForAstronomicalObjectClassificationCode() throws Exception {
+    public void testSetterForAstronomicalValidObjectClassificationCode() throws Exception {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PMer58M";
@@ -595,7 +599,7 @@ class SolarSystemInformationTest {
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
 
-        solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
+        solarSystemInformation.initialiseAOCDetailsValidate(actualAstronomicalObjectClassificationCode);
         assertEquals("99942 Apophis", solarSystemInformation.getObjectName());
 
         verify(mockWebService);
@@ -660,7 +664,7 @@ class SolarSystemInformationTest {
     }
 
     @Test
-    public void testSetterRadiusInValidNegative() throws Exception {
+    public void testSetterRadiusInValidNumberNegative() throws Exception {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PMer58M";
@@ -679,7 +683,7 @@ class SolarSystemInformationTest {
     }
 
     @Test
-    public void testSetterMassValid() throws Exception {
+    public void testSetterMassValidNumber() throws Exception {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PMer58M";
@@ -698,7 +702,7 @@ class SolarSystemInformationTest {
     }
 
     @Test
-    public void testSetterMassInValid() throws Exception {
+    public void testSetterMassInValidNegativeNumber() throws Exception {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PMer58M";
@@ -717,7 +721,7 @@ class SolarSystemInformationTest {
     }
 
     @Test
-    public void testSetterSMAValid() throws Exception {
+    public void testSetterSMAValidCode() throws Exception {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PMer58M";
@@ -736,7 +740,7 @@ class SolarSystemInformationTest {
     }
 
     @Test
-    public void testSetterSMAInValid() throws Exception {
+    public void testSetterSMAInValidSMACode() throws Exception {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PMer58M";
@@ -754,7 +758,7 @@ class SolarSystemInformationTest {
         verify(mockWebService);
     }
 
-    @Test void toStringTest() throws Exception {
+    @Test void SolarSystemInformationToStringTest() throws Exception {
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
         String actualAstronomicalObjectClassificationCode = "PMer58M";
@@ -773,10 +777,9 @@ class SolarSystemInformationTest {
     }
 
     @Test
-    public void validAuthenticate(){
+    public void validAuthenticateMethodUserHasBeenFound(){
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
-        String expectedObjectNaming = null;
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
 
         expect(mockWebService.authenticate(actualUserID,actualUserPassword)).andReturn(true);
@@ -788,7 +791,7 @@ class SolarSystemInformationTest {
     }
 
     @Test
-    public void userNotFound(){
+    public void userOrPasswordNotFoundByWebServiceInterface(){
         String actualUserID = "AB1234";
         String actualUserPassword = "AaBbCc1!2?";
         IWebService mockWebService = EasyMock.createMock(IWebService.class);
