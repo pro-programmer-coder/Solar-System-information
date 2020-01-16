@@ -499,7 +499,7 @@ class SolarSystemInformationTest {
         SolarSystemInformation solarSystemInformation = new SolarSystemInformation(actualUserID, actualUserPassword, mockWebService);
 
         solarSystemInformation.initialiseAOCDetailsValidate("PMer58M");
-        assertEquals("N/A", solarSystemInformation.getAstronomicalObjectClassificationCode());
+        assertEquals("Not Allowed", solarSystemInformation.getAstronomicalObjectClassificationCode());
 
         verify(mockWebService);
     }

@@ -108,15 +108,19 @@ public class SolarSystemInformation {
     }
 
     private void setAstronomicalObjectClassificationCode(String astronomicalObjectClassificationCode) {
+        //validate AOC before setting it
         if(validateAOC(astronomicalObjectClassificationCode)) {
             this.astronomicalObjectClassificationCode = astronomicalObjectClassificationCode;
         }
+        //validation fails
         else {
-            this.astronomicalObjectClassificationCode = "N/A";
+            this.astronomicalObjectClassificationCode = "Not Allowed";
         }
     }
 
+    //validate AOC
     private boolean validateAOC(String astronomicalObjectClassificationCode){
+        //Start with Object Type Letter, 0-8 digits, Planet name Capital letter followed by 2 lower case letter, SMA 1-3 digits, SMA unit Letter
         if(astronomicalObjectClassificationCode.matches("^(S|P|M|D|A|C)\\d{0,8}([A-Z][a-z][a-z])\\d{1,3}(T|M|B|L|TL)")) {
             return true;
         }
@@ -136,6 +140,7 @@ public class SolarSystemInformation {
     }
 
     private void setOrbitalPeriod(int orbitalPeriod) {
+        //if not negative number. this can't be negative
         if(orbitalPeriod > 0) {
             this.orbitalPeriod = orbitalPeriod;
         }
@@ -149,6 +154,7 @@ public class SolarSystemInformation {
     }
 
     private void setRadius(BigDecimal radius) {
+        //if not negative number. this can't be negative
         if(radius.compareTo(BigDecimal.valueOf(0)) == 1){
             this.radius = radius;
         }
@@ -162,6 +168,7 @@ public class SolarSystemInformation {
     }
 
     private void setSemiMajorAxis(BigDecimal semiMajorAxis) {
+        //if not negative number. this can't be negative
         if(semiMajorAxis.compareTo(BigDecimal.valueOf(0)) == 1) {
             this.semiMajorAxis = semiMajorAxis;
         }
@@ -175,6 +182,7 @@ public class SolarSystemInformation {
     }
 
     private void setMass(BigDecimal mass) {
+        //if not negative number. this can't be negative
         if(mass.compareTo(BigDecimal.valueOf(0)) == 1) {
             this.mass = mass;
         }
@@ -184,18 +192,25 @@ public class SolarSystemInformation {
     }
 
 
+    //uses webservice interface
     public String initialiseAOCDetailsValidate(String astronomicalObjectClassificationCode) throws Exception {
+        //validate AOC code first before call to interface
         if(validateAOC(astronomicalObjectClassificationCode)){
                 String AocReturn = null;
+                //return from web service
                 AocReturn = webService.getStatusInfo(astronomicalObjectClassificationCode);
+                //split return using ',' as this is what gets returned
                 String[] AocReturnSplit = AocReturn.split(",");
+                //if no ','
                 if(AocReturnSplit.length == 1){
                     return "No such classification or SMA code";
                 }
+                //if return doesn't return right amount of data
                 else if(AocReturnSplit.length != 7){
                     throw new Exception("Not right amount of information");
                 }
 
+                //setters for the return data
                 setAstronomicalObjectClassificationCode(AocReturnSplit[0]);
                 setObjectType(AocReturnSplit[1]);
                 setObjectName(AocReturnSplit[2]);
@@ -210,6 +225,7 @@ public class SolarSystemInformation {
 
     }
 
+    // toString as detailed in requirements
     @Override
     public String toString() {
         return objectType + ", " + objectName + "[" + astronomicalObjectClassificationCode + "] " + semiMajorAxis + " km, " + mass + " kg";
